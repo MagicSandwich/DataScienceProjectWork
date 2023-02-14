@@ -6,7 +6,7 @@ import json
 from datetime import datetime, timezone, timedelta
 
 #Enter filename inside of json file
-file = 'almaty 28nov2020 to 01feb2023'
+file = 'almaty1janto1feb'
 #Reading JSON file created using OpenWeather API
 f = open('./json/'+file+'.json')
   
@@ -19,14 +19,14 @@ del data['coord']
 df = pd.json_normalize(data['list'])
 
 #time = df.get('dt')
-df['dt'] = pd.to_datetime(df['dt'], unit='s') + pd.Timedelta('06:00:00')
+#df['dt'] = pd.to_datetime(df['dt'], unit='s') + pd.Timedelta('06:00:00')
 #for i in range(len(time)):
  #   dateandtime = datetime.fromtimestamp(time[i], timezone(+timedelta(hours=6)))
  #   onlydate = dateandtime.strftime('%m-%d-%Y')
  #   onlytime = dateandtime.strftime('%H:%M:%S')
     
 #export our data to CSV Dataset.
-df.to_csv('csv/'+file+'.csv', header=['Date','Air Quality Index','CO','NO','NO2','O3','SO2','PM2_5','PM10','NH3'])
+df.to_csv('csv/'+file+'.csv',index=False, header=['Date','Air Quality Index','CO','NO','NO2','O3','SO2','PM2_5','PM10','NH3'])
 
 #   Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
 #   components.co Сoncentration of CO (Carbon monoxide), μg/m3
