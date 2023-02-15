@@ -2,14 +2,12 @@
 import pandas as pd
 #importing json library
 import json
-#importing datetime library to change UNIX timestamps to date and time
-from datetime import datetime, timezone, timedelta
 
 #Enter filename inside of json file
 file = 'almaty1janto1feb'
 #Reading JSON file created using OpenWeather API
 f = open('./json/'+file+'.json')
-  
+
 #Loading JSON file as dictionary
 data = json.load(f)
 
@@ -17,7 +15,6 @@ data = json.load(f)
 del data['coord']
 #normalizing data
 df = pd.json_normalize(data['list'])
-
 #time = df.get('dt')
 #df['dt'] = pd.to_datetime(df['dt'], unit='s') + pd.Timedelta('06:00:00')
 #for i in range(len(time)):
